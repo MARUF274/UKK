@@ -33,31 +33,40 @@
     <div class="card-header">
             <h2>UBAH BUKU</h2>
         </div>
+        <?php $connection = new mysqli('localhost', 'root', '', 'ukk');
+        $id = $_GET['id'];
+$getProduct = $connection->query("SELECT * FROM bukudb WHERE id_buku=" . $id);
+while ($fetchBook = $getProduct->fetch_assoc()){
+?>
     <form style="margin: 20px 20px;" action="editScript.php" method="POST" enctype="multipart/form-data">
             <div class="form-group row">
                 <label for="addJudul" class="col-sm-2 col-form-label">Judul</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="addJudul">
+                    <input type="text" class="form-control" value="<?=$fetchBook["judul"]?>" name="addJudul"> 
                 </div>
             </div>
             <div class="form-group row">
                 <label for="file" class="col-sm-2 col-form-label">Gambar</label>
                 <div class="col-sm-10">
-                    <input type="file" class="form-control" name="file">
+                    <input type="file" class="form-control" value="<?=$fetchBook["gambar"]?>" name="file">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="addPengarang" class="col-sm-2 col-form-label">Pengarang</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="addPengarang">
+                    <input type="text" class="form-control" name="addPengarang" value="<?=$fetchBook["pengarang"]?>">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="addPenerbit" class="col-sm-2 col-form-label">Penerbit</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="addPenerbit">
+                    <input type="text" class="form-control" name="addPenerbit" value="<?=$fetchBook["penerbit"]?>">
+                    <input type="hidden" name="id" value="<?=$fetchBook["id_buku"]?>">
                 </div>
             </div>
+            <?php 
+        }
+        ?>
             <div class="form-group row">
                 <div class="col-sm-10">
                     <button class="btn btn-success">Edit</button>

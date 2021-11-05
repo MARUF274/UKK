@@ -3,7 +3,7 @@
     if(isset($_POST['addJudul'])) {
 
         $message    ="";
-        $id =$_GET["id"];
+        $id =$_POST["id"];
         $judul = $_POST['addJudul'];
         $pengarang = $_POST['addPengarang'];
         $penerbit = $_POST['addPenerbit'];
@@ -25,7 +25,13 @@
                 // Upload file to server
                 if(move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath)){
                     // Insert image file name into database
-                    $insert = mysqli_query($connection, "UPDATE bukudb  (`judul`, `pengarang`, `penerbit`, `gambar`) VALUES ('$judul', '$pengarang', '$penerbit', '$targetFilePath')");
+                    $getProduct = $connection->query("SELECT gambar FROM bukudb WHERE id_buku='$id'");
+while ($fetchBook = $getProduct->fetch_assoc()){ 
+    $filename = $fetchBook['gambar'];
+}
+                    unlink($filename);
+                    $query = "UPDATE bukudb SET judul='$judul', pengarang='$pengarang', penerbit='$penerbit', gambar='$targetFilePath' WHERE id_buku=$id";
+                    $insert = mysqli_query($connection, $query);
                     if($insert){
                         $message = "Successfully added new Product";
                         
