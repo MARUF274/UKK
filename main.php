@@ -21,23 +21,37 @@
                 <a href="add.php" class="btn btn-primary mx-3">Tambah</a>
 
                 <form class="form-inline ml-auto mx-4" style="margin-right: 2.1rem!important;">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </ul>
-            <div class="col-md-3 mx-3 my-3">
-                <div class="card col-md-10" style="">
-                    <h5 class="my-2">test</h5>
-                    <img src="https://via.placeholder.com/250x300" class="card-img-top my-3" alt="...">
-                        <div class="my-2">
-                        <a href="#" class="btn btn-warning col-md-5">Edit</a>
-                        <a href="#" class="btn btn-danger col-md-5">Delete</a>
-                        </div>
+            <?php $connection = new mysqli('localhost', 'root', '', 'ukk');
+$getProduct = $connection->query("SELECT * FROM bukudb ");
+while ($fetchBook = $getProduct->fetch_assoc()){
+?>
+            <div class="col-md-3 my-3">
+
+                <div class="card col-md-10 mx-auto" style="">
+
+                    <h5 class="my-2"><?=$fetchBook["judul"]?></h5> 
+                    <img src="<?=$fetchBook["gambar"]?>" class="card-img-top my-3" alt="..."
+                        style="width: 216px;">
+                        <p class="my-2">Pengarang: <?=$fetchBook["pengarang"]?></p> 
+                        <p class="my-2">Penerbit: <?=$fetchBook["penerbit"]?></p>   
+                        <hr> 
+                    <div class="my-2">
+                        <a href="edit.php?id=<?=$fetchBook["id_buku"]?>" class="btn btn-warning col-md-5">Edit</a>
+                        <a href="deleteScript.php?id=<?=$fetchBook["id_buku"]?>" class="btn btn-danger col-md-5">Delete</a>
+                    </div>
                 </div>
+                
             </div>
-                       
+            <?php 
+        }
+        ?>
+                        
+
         </div>
     </div>
+
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

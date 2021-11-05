@@ -17,16 +17,10 @@
             <div class="collapse navbar-collapse " id="navMenu">
                 <ul class="navbar-nav ml-auto ">
                     <li class="nav-item ">
-                        <a href="main.php" class="nav-link ">Add VN</a>
+                        <a href="add.php" class="nav-link ">Add Book</a>
                     </li>
                     <li class="nav-item ">
-                        <a href="view.php" class="nav-link ">View VN</a>
-                    </li>
-                    <li class="nav-item ">
-                        <a href="# " class="nav-link ">About Me</a>
-                    </li>
-                    <li class="nav-item ">
-                        <a href="# " class="nav-link ">Contact</a>
+                        <a href="main.php" class="nav-link ">View Book</a>
                     </li>
 
                 </ul>
@@ -37,9 +31,9 @@
     </div>
     <div class="card mb-3 mx-auto border-info" style="max-width: 1200px; margin-top:150px;">
     <div class="card-header">
-            <h2>DAFTAR BUKU </h2>
+            <h2>TAMBAH BUKU</h2>
         </div>
-    <form style="margin: 20px 20px;" action="add.php" method="POST" enctype="multipart/form-data">
+    <form style="margin: 20px 20px;" action="addScript.php" method="POST" enctype="multipart/form-data">
             <div class="form-group row">
                 <label for="addJudul" class="col-sm-2 col-form-label">Judul</label>
                 <div class="col-sm-10">
@@ -71,62 +65,7 @@
             </div>
 
         </form>
-        <?php 
-        // Check If form submitted, insert form data into users table.
-    if(isset($_POST['addJudul'])) {
-
-        $message    ="";
-        $judul = $_POST['addJudul'];
-        $pengarang = $_POST['addPengarang'];
-        $penerbit = $_POST['addPenerbit'];
-        $targetDir = "uploads/";
-        $fileName = basename($_FILES["file"]["name"]);
-        $targetFilePath = $targetDir . $fileName;
-        $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
-
-        // include database connection file
-        include_once("connect.php");
-                
-        if(isset($_POST["addJudul"]) && !empty($_FILES["file"]["name"])){
-            // Allow certain file formats
-            $allowTypes = array('jpg','png','jpeg','gif','pdf');
-            if(in_array($fileType, $allowTypes)){
-                // Upload file to server
-                if(move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath)){
-                    // Insert image file name into database
-                    $insert = mysqli_query($connection, "INSERT INTO bukudb (`judul`, `pengarang`, `penerbit`, `gambar`) VALUES ('$judul', '$pengarang', '$penerbit', '$fileName')");
-                    if($insert){
-                        $message = "Successfully added new Product";
-                    }else{
-                        $message = "File upload failed, please try again.";
-                    } 
-                }else{
-                    $message = "Sorry, there was an error uploading your file.";
-                }
-            }else{
-                $message = 'Sorry, only JPG, JPEG, PNG, & GIF files are allowed to upload.';
-            }
-        }else{
-            $message = 'Please select a file to upload.';
-        }
         
-        // Insert user data into table
-        
-        
-
-
-        }
-        if(isset($_SESSION["message"])){
-            echo($_SESSION["message"]);
-            unset($_SESSION["message"]);
-            
-        }
-        if($insert){
-            header("location:main.php");
-    exit();
-        // Show message when user added
-        }
-        ?>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
