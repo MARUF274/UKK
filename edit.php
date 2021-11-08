@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="src/css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 </head>
@@ -29,8 +30,8 @@
 
         </nav>
     </div>
-    <div class="card mb-3 mx-auto border-info" style="max-width: 1200px; margin-top:150px;">
-    <div class="card-header">
+    <div class="card mb-3 mx-auto border-info back" style="max-width: 1200px; margin-top:150px;">
+    <div class="card-header daftar">
             <h2>UBAH BUKU</h2>
         </div>
         <?php $connection = new mysqli('localhost', 'root', '', 'ukk');
@@ -40,25 +41,25 @@ while ($fetchBook = $getProduct->fetch_assoc()){
 ?>
     <form style="margin: 20px 20px;" action="editScript.php" method="POST" enctype="multipart/form-data">
             <div class="form-group row">
-                <label for="addJudul" class="col-sm-2 col-form-label">Judul</label>
+                <label for="addJudul" class="col-sm-2 col-form-label textPutih">Judul</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" value="<?=$fetchBook["judul"]?>" name="addJudul"> 
                 </div>
             </div>
             <div class="form-group row">
-                <label for="file" class="col-sm-2 col-form-label">Gambar</label>
+                <label for="file" class="col-sm-2 col-form-label textPutih">Gambar</label>
                 <div class="col-sm-10">
                     <input type="file" class="form-control" value="<?=$fetchBook["gambar"]?>" name="file">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="addPengarang" class="col-sm-2 col-form-label">Pengarang</label>
+                <label for="addPengarang" class="col-sm-2 col-form-label textPutih">Pengarang</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" name="addPengarang" value="<?=$fetchBook["pengarang"]?>">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="addPenerbit" class="col-sm-2 col-form-label">Penerbit</label>
+                <label for="addPenerbit" class="col-sm-2 col-form-label textPutih">Penerbit</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" name="addPenerbit" value="<?=$fetchBook["penerbit"]?>">
                     <input type="hidden" name="id" value="<?=$fetchBook["id_buku"]?>">

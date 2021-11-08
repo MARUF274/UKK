@@ -13,7 +13,7 @@ while ($fetchBook = $getProduct->fetch_assoc()){
                     unlink($filename); 
                     mysqli_query($connection, "DELETE FROM bukudb WHERE id_buku = $id");
                     
-        header("location:main.php");
+        header("location:view.php");
                         exit();
         
         // Insert user data into table

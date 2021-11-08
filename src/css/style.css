@@ -1,0 +1,21 @@
+body{
+    background-image: url("../img/bg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+.back{
+    background-color: rgba(0, 0, 0, 0.9)!important;
+    border: 0ch!important;
+}
+.daftar{
+    color: white; 
+    background-color:#242424!important;
+}
+.textPutih{
+    color: white; 
+}
+table{
+    border: 0ch;
+}

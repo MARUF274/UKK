@@ -47,7 +47,12 @@ while ($fetchBook = $getProduct->fetch_assoc()){
         }else{
             $message = 'Please select a file to upload.';
         }
-        header("location:main.php");
+        if(isset($_SESSION["message"])){
+            echo($_SESSION["message"]);
+            unset($_SESSION["message"]);
+            
+        }
+        header("location:view.php");
                         exit();
         
         // Insert user data into table
@@ -56,9 +61,5 @@ while ($fetchBook = $getProduct->fetch_assoc()){
 
 
         }
-        if(isset($_SESSION["message"])){
-            echo($_SESSION["message"]);
-            unset($_SESSION["message"]);
-            
-        }
+
         ?>

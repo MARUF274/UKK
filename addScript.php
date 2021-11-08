@@ -40,7 +40,7 @@
         }else{
             $message = 'Please select a file to upload.';
         }
-        header("location:main.php");
+        header("location:view.php");
                         exit();
         
         // Insert user data into table
